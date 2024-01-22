@@ -1,0 +1,20 @@
+FROM ruby:3.1
+
+RUN mkdir /myapp
+WORKDIR /myapp
+COPY Gemfile.template /myapp/Gemfile
+COPY Gemfile.lock.template /myapp/Gemfile.lock
+
+RUN gem update --system
+RUN bundle update --bundler
+
+RUN bundle install
+COPY . /myapp
+
+COPY entrypoint.sh.template /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
+

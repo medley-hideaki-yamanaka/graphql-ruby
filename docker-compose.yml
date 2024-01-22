@@ -65,5 +65,24 @@ services:
       RAILS_ENV: development 
     container_name: graphql_app3
 
+  app4:
+    build:
+      context: ./rest_ruby_3.1
+      dockerfile: Dockerfile
+#    command: bash -c "rm -f tmp/pids/server.pid && bundle install && rails db:create && rails db:migrate && rails db:seed:replant && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./rest_ruby_3.1:/myapp
+    ports:
+      - "3003:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: development 
+    container_name: graphql_app4
+
 volumes:
   db-store:

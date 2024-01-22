@@ -44,3 +44,4 @@ k6 run k6/script.js --out csv=k6/output/result.csv
 | ruby: 2.7.8, graphql-ruby: 1.13.20 | ave: 466ms |
 | ruby: 2.7.8, graphql-ruby: 2.2.5 | ave: 353ms |
 | ruby: 3.1.4, graphql-ruby: 2.2.5 | ave: 354ms |
+| ruby: 3.1.4, REST API | ave: 196ms |
