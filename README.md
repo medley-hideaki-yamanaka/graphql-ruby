@@ -16,8 +16,8 @@ docker-compose exec app1 rails db:create
 ## DBデータ投入コマンド
 
 ```bash
-mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < authors.sql
-mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < posts.sql
+mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < db_data/authors.sql
+mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < db_data/posts.sql
 ```
 
 
