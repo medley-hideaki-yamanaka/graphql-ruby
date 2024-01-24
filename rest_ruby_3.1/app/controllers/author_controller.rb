@@ -1,6 +1,10 @@
 class AuthorController < ApplicationController
   def index
-    authors = ::Author.preload(:posts)
+    if params[:eager_load]
+      authors = ::Author.eager_load(:posts)
+    else
+      authors = ::Author.preload(:posts)
+    end
 
     result = authors.map do |author|
       posts = author.posts.map do |post|
