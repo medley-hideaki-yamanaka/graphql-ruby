@@ -23,13 +23,15 @@ ActiveRecord::Schema.define(version: 2024_01_22_030207) do
   end
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "author_id"
+    t.bigint "author_id"
     t.string "title", null: false
-    t.string "description"
+    t.string "description", limit: 500
     t.text "content"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
+  add_foreign_key "posts", "authors"
 end

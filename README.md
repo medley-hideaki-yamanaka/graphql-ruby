@@ -13,11 +13,15 @@ graphql ruby(gem)とrubyバージョン組み合わせによる、速度検証�
 docker-compose exec app1 rails db:create
 ```
 
-## DBデータ投入コマンド
+### テーブル構成
+
+![image](./assets/image_table.png)
+
+### DBデータ投入コマンド
 
 ```bash
-mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < db_data/authors.sql
-mysql -u root -h localhost -P 3306 --protocol=tcp graphql -ppassword < db_data/posts.sql
+mysql -u root -h localhost --protocol=tcp -ppassword graphql < db_data/authors.sql
+mysql -u root -h localhost --protocol=tcp -ppassword graphql < db_data/posts.sql
 ```
 
 

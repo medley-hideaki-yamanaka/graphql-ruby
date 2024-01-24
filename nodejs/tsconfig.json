@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "esModuleInterop": true,
+        "target": "ES2021",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "lib": ["es2021"],
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "dist/*"
+            ]
+        }
+    },
+    "include": ["src/**/*", "src/*"],
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    }
+}

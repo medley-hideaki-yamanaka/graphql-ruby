@@ -4,30 +4,37 @@ import { sleep } from 'k6';
 export const options = {
     discardResponseBodies: true,
     scenarios: {
-      app1: {
+    //   app1: {
+    //     executor: 'per-vu-iterations',
+    //     exec: 'app1',
+    //     vus: 1,
+    //     iterations: 20,
+    //     maxDuration: '10s',
+    //   },
+    //   app2: {
+    //     executor: 'per-vu-iterations',
+    //     exec: 'app2',
+    //     vus: 1,
+    //     iterations: 20,
+    //     maxDuration: '10s',
+    //   },
+    //   app3: {
+    //     executor: 'per-vu-iterations',
+    //     exec: 'app3',
+    //     vus: 1,
+    //     iterations: 20,
+    //     maxDuration: '10s',
+    //   },
+    //   app4: {
+    //     executor: 'per-vu-iterations',
+    //     exec: 'app4',
+    //     vus: 1,
+    //     iterations: 20,
+    //     maxDuration: '10s',
+    //   },
+      app5: {
         executor: 'per-vu-iterations',
-        exec: 'app1',
-        vus: 1,
-        iterations: 20,
-        maxDuration: '10s',
-      },
-      app2: {
-        executor: 'per-vu-iterations',
-        exec: 'app2',
-        vus: 1,
-        iterations: 20,
-        maxDuration: '10s',
-      },
-      app3: {
-        executor: 'per-vu-iterations',
-        exec: 'app3',
-        vus: 1,
-        iterations: 20,
-        maxDuration: '10s',
-      },
-      app4: {
-        executor: 'per-vu-iterations',
-        exec: 'app4',
+        exec: 'app5',
         vus: 1,
         iterations: 20,
         maxDuration: '10s',
@@ -36,31 +43,6 @@ export const options = {
 };
 
 export function app1 () {
-    const url = `http://localhost:3000/graphql`;
-    const payload = JSON.stringify({
-        query: "query getAutors {\
-            authors {\
-                id\
-                email\
-                posts {\
-                    id\
-                    title\
-                }\
-                }\
-            }",
-        operationName: 'getAutors',
-    });
-    
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    http.post(url, payload, params);
-}
-
-export function app2 () {
     const url = `http://localhost:3001/graphql`;
     const payload = JSON.stringify({
         query: "query getAutors {\
@@ -85,7 +67,7 @@ export function app2 () {
     http.post(url, payload, params);
 }
 
-export function app3 () {
+export function app2 () {
     const url = `http://localhost:3002/graphql`;
     const payload = JSON.stringify({
         query: "query getAutors {\
@@ -110,7 +92,57 @@ export function app3 () {
     http.post(url, payload, params);
 }
 
+export function app3 () {
+    const url = `http://localhost:3003/graphql`;
+    const payload = JSON.stringify({
+        query: "query getAutors {\
+            authors {\
+                id\
+                email\
+                posts {\
+                    id\
+                    title\
+                }\
+                }\
+            }",
+        operationName: 'getAutors',
+    });
+    
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    http.post(url, payload, params);
+}
+
 export function app4 () {
-    const url = `http://localhost:3003/authors`;
+    const url = `http://localhost:3004/authors`;
     http.get(url);
+}
+
+export function app5 () {
+    const url = `http://localhost:4000/graphql`;
+    const payload = JSON.stringify({
+        query: "query getAutors {\
+            authors {\
+                id\
+                email\
+                posts {\
+                    id\
+                    title\
+                }\
+                }\
+            }",
+        operationName: 'getAutors',
+    });
+    
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    http.post(url, payload, params);
 }
