@@ -7,6 +7,18 @@ graphql ruby(gem)とrubyバージョン組み合わせによる、速度検証�
 
 ![image](./assets/graphql-ruby.drawio.png)
 
+## 検証用アプリケーション起動
+
+```bash
+docker-compose up -d
+```
+
+## 検証用アプリケーション削除
+
+```bash
+docker-compose down
+```
+
 ## database作成
 
 ```bash
