@@ -9,6 +9,6 @@ const models = {
   Post,
 };
 
-export type Modles = typeof models;
+export type Models = typeof models;
 
 export default models;

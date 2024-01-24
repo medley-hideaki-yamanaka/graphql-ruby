@@ -1,8 +1,17 @@
+import { IResolvers } from 'apollo-server-express';
+import Author from './models/author';
+import { ResolverContext } from './typings';
 import models from './models'
 
-export const resolvers = {
+export const resolvers: IResolvers<Author, ResolverContext> = {
   Query: {
-    authors: async () => await models.Author.findAll({ include: { model: models.Post, required: true, as: 'posts' } }),
-    posts: async () => await models.Post.findAll(),
+    authors: async (parent, args) => await models.Author.findAll(),
+  },
+
+  Author: {
+    posts: async (author, args) => 
+      models.Post.findAll({
+        where: { author_id: author.id }
+      })
   }
 }

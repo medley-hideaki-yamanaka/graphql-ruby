@@ -25,20 +25,20 @@ export const options = {
     //     iterations: 20,
     //     maxDuration: '10s',
     //   },
-      app4: {
-        executor: 'per-vu-iterations',
-        exec: 'app4',
-        vus: 1,
-        iterations: 20,
-        maxDuration: '10s',
-      },
-    //   app5: {
+    //   app4: {
     //     executor: 'per-vu-iterations',
-    //     exec: 'app5',
+    //     exec: 'app4',
     //     vus: 1,
     //     iterations: 20,
     //     maxDuration: '10s',
     //   },
+      app5: {
+        executor: 'per-vu-iterations',
+        exec: 'app5',
+        vus: 1,
+        iterations: 20,
+        maxDuration: '10s',
+      },
     },
 };
 
