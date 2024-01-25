@@ -8,5 +8,10 @@ module Types
     field :description, String, null: false
     field :content, String, null: false
     field :date, GraphQL::Types::ISO8601Date, null: false
+    field :author, Types::AuthorType, null: false
+
+    def author
+      Loaders::RecordLoader.for(::Author).load(object.author_id)
+    end
   end
 end
