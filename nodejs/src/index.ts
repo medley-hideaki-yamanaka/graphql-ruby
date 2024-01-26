@@ -1,12 +1,13 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './schema';
-import { resolvers } from './resolver'
+import resolvers from './resolvers/resolver'
 import models, { sequelize } from './models';
 import http from 'http';
 import DataLoader from 'dataloader';
 import loaders from './infrastructure/dataloader/loaders';
-import Author from './models/author'
+import Post from './models/post'
+import Author from './models/author';
 
 const app = express();
 
@@ -16,14 +17,15 @@ const server = new ApolloServer({
   context: async ({ req, connection }) => {
     if (connection) return { models };
 
-    // if (req) {
-    //   return {
-    //     models,
-    //     loaders: {
-    //       user: new DataLoader<number, Author>(keys => loaders.author.batchAuthors(keys, models)),
-    //     },
-    //   };
-    // }
+    if (req) {
+      return {
+        models,
+        loaders: {
+          author: new DataLoader<number, Post>(keys => loaders.author.batchAuthors(keys, models)),
+          post: new DataLoader<number, Author>(keys => loaders.post.batchPosts(keys, models)),
+        },
+      };
+    }
 },
 });
 

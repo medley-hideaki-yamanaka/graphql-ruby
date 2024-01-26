@@ -3,9 +3,9 @@ import { Op } from 'sequelize';
 import { Models } from '../../../models';
 
 export const batchAuthors = async (keys: readonly number[], models: Models) => {
-  const authors = await models.Author.findAll({
-    where: { id: { [Op.in]: keys } },
+  const posts = await models.Post.findAll({
+    where: { author_id: { [Op.in]: keys } },
   });
 
-  return keys.map(key => authors.find(author => author.id === key) || new Error(`No result for ${key}`));
+  return keys.map(key => posts.find(post => post.author_id === key) || new Error(`No result for ${key}`));
 };
